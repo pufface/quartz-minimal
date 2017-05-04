@@ -19,12 +19,12 @@ Setup DB:
 
 Setup Websphere:
 1. Create resources (Datastore, Url, WorkManger)  
-References to resources are bind by `WebContent\WEB-INF\ibm-web-bnd.xml` (only Websphere needs bindings definition, Tomcat ignores this)
+References to resources are bind by `WEB-INF/ibm-web-bnd.xml` (only Websphere needs bindings definition, Tomcat ignores this)
 Scheduler starts on `http://localhost:10039/quartz-minimal/`
 
 Setup Tomcat:
 1. Copy jars from tomcat/libs to <TOMCAT_HOME>/libs  
-Resources configuration are defined in `WebContent\META-INF\context.xml` (only Tomcat use this configuration, Websphere ignores this)
+Resources configuration are defined in `META-INF/context.xml` (only Tomcat use this configuration, Websphere ignores this)
 Scheduler starts on `http://localhost:8080/quartz-minimal/` 
 
 Libs used:
