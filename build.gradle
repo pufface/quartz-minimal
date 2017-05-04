@@ -1,0 +1,40 @@
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'eclipse-wtp'
+
+sourceCompatibility = 1.6
+targetCompatibility = 1.6
+
+project.webAppDirName = 'WebContent'
+
+tasks.withType(JavaCompile) {
+	doFirst {
+		if (JavaVersion.toVersion(sourceCompatibility) == JavaVersion.VERSION_1_6
+			&& JavaVersion.current() != JavaVersion.VERSION_1_6) {
+			if (System.env.JDK6_HOME != null) {
+				options.fork = true
+				options.bootClasspath = fileTree(include: ['*.jar'], dir: "$System.env.JDK6_HOME/jre/lib/").join(File.pathSeparator)
+				options.extensionDirs = "$System.env.JDK6_HOME/jre/lib/ext/"
+			} else {
+				println "You are building for Java 6, please set 'JDK6_HOME' system variable"
+			}
+		}
+	}
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'Main'
+    }
+}
+
+repositories {
+    mavenCentral()
+	mavenLocal()
+}
+
+dependencies {
+	compileOnly 'javax.servlet:javax.servlet-api:3.1.0'
+	compileOnly files('tomcat/libs/commonj-twm.jar')
+	compile 'org.quartz-scheduler:quartz:2.2.3'
+}
