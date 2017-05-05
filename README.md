@@ -27,12 +27,13 @@ Setup Tomcat:
 Resources configuration are defined in `WebContent\META-INF\context.xml` (only Tomcat use this configuration, Websphere ignores this)
 Scheduler starts on `http://localhost:8080/quartz-minimal/` 
 
-Libs used:
-- Quartz 2.2.3
-- foo-commonj-1.1 (JSR 237 Timer and WorkManager implementation, used in tomcat)
+External libs for Tomcat: 
+- foo-commonj-1.1.0.jar, commonj-twm.jar (JSR 237 Timer and WorkManager implementation, used in tomcat) http://commonj.myfoo.de/download.shtml
 - resource-factory-0.1.jar (URL provider implementation, used in tomcat)
+- ojdbc6.jar (driver for Oracle DB)
 
 Tested environments:
+- Quartz 2.2.3
 - Websphere 8.0.0.5
 - Tomcat 7
 
